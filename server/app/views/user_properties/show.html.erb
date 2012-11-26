@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_property.user.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user_property.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user_property.address %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @user_property.birthday %>
+</p>
+
+<div class="btn-group">
+ <%= link_to 'Back', user_properties_path, :class => 'btn btn-small' %>
+ <%= link_to 'Edit', edit_user_property_path(@user_property), :class => 'btn btn-small btn-primary' %>
+</div>

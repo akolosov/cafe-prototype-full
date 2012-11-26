@@ -1,0 +1,9 @@
+<h1>Editing item_property</h1>
+
+<%= render 'form' %>
+
+<div class="btn-group">
+<%= link_to 'Back', item_properties_path, :class => 'btn btn-small ' %>
+<%= link_to 'Show', item_property_path(@item_property.item, @item_property), :class => 'btn btn-small btn-info' if can? :read, @item_property %>
+</div>
+

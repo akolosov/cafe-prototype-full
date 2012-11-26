@@ -1,0 +1,8 @@
+[
+<%= { :id => @user.id,
+      :email => @user.email,
+      :name => @user.user_property.name,
+      :phone => @user.user_property.phone,
+      :address => @user.user_property.address,
+      :birthday => @user.user_property.birthday.strftime("%Y-%m-%d") }.to_json.html_safe %>,
+{}]

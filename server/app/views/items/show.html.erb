@@ -1,0 +1,49 @@
+<div class="row-fluid">
+  <div class="span12">
+    <p id="notice"><%= notice %></p>
+    <div class="row-fluid">
+      <div class="span4">
+  <%= image_tag @item.photo %>
+
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+      </div>
+      <div class="span8">
+<h1>Listing item_properties</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Property</th>
+    <th>Value</th>
+    <th width="25%"></th>
+  </tr>
+
+<% @item.item_properties.each do |item_property| %>
+  <tr>
+    <td><%= item_property.property.name %></td>
+    <td><%= item_property.value %></td>
+    <td class="btn-group">
+     <%= link_to 'Show', item_property_url(item_property.item, item_property), :class => 'btn btn-small btn-info  ' if can? :read, item_property %>
+     <%= link_to 'Edit', edit_item_property_path(item_property.item, item_property), :class => 'btn btn-small btn-primary  ' if can? :update, item_property %>
+     <%= link_to 'Destroy', item_property_url(item_property.item, item_property), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger  ' if can? :destroy, item_property %>
+    </td>
+  </tr>
+<% end %>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="btn-group">
+ <%= link_to 'Back', items_path, :class => 'btn btn-small ' %>
+ <%= link_to 'Edit', edit_item_path(@item), :class => 'btn btn-small btn-primary' if can? :update, @item %>
+ <%= link_to 'New Property', new_item_property_path(@item), :class => 'btn btn-small btn-primary' if can? :create, ItemProperty %>
+</div>

@@ -1,0 +1,68 @@
+<div class="row-fluid">
+  <div class="span12">
+    <p id="notice"><%= notice %></p>
+    <div class="row-fluid">
+      <div class="span4">
+<p>
+  <b>User:</b>
+  <%= @user.email %>
+</p>
+
+<% if @user.user_property %>
+<p>
+  <b>Name:</b>
+  <%= @user.user_property.name %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user.user_property.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user.user_property.address %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @user.user_property.birthday %>
+</p>
+<% end %>
+
+<%= link_to 'New User property', new_user_property_path(@user), :class => 'btn btn-small btn-primary' unless @user.user_property %>
+
+      </div>
+      <div class="span8">
+<h1>Listing user bonuses</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Bonus</th>
+    <th>Expired at</th>
+    <th width="25%">Action</th>
+  </tr>
+
+<% @user.user_accounts.each do |user_account| %>
+  <tr>
+    <td><%= user_account.bonus %></td>
+    <td><%= user_account.expired_at %></td>
+    <td class="btn-group">
+     <%= link_to 'Show', user_account_path(@user, user_account), :class => 'btn btn-small btn-info  ' %>
+     <%= link_to 'Edit', edit_user_account_path(@user, user_account), :class => 'btn btn-small btn-primary  ' %>
+     <%= link_to 'Destroy', user_account_path(@user, user_account), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger  ' %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New User Bonus', new_user_account_path(@user), :class => 'btn btn-small btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btn-group">
+ <%= link_to 'Back', users_path, :class => 'btn btn-small' %>
+ <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-small btn-primary' if can? :update, @user %>
+ <%= link_to 'Edit Props', edit_user_property_path(@user, @user.user_property), :class => 'btn btn-small btn-primary  ' if (@user.user_property) && (can? :update, @user.user_property) %>
+</div>

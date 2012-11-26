@@ -1,0 +1,35 @@
+<h1>Listing orders</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>User</th>
+    <th>Status</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Additions</th>
+    <th>Actions</th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr class='<%= (order.closed ? "closed" : "") %> <%= (order.checked ? "checked" : "") %>'>
+    <td><% if order.user %><%= order.user.email %><% else order.name end %></td>
+    <td><%= order.status %></td>
+    <td><%= order.phone %></td>
+    <td><%= order.address %></td>
+    <td><%= order.additions %></td>
+    <td width="25%" class="btn-group">
+     <%= link_to 'Show', order_url(order), :class => 'btn btn-small btn-info  ' if can? :read, order %>
+     <%= link_to 'Items', order_items_path(order), :class => 'btn btn-small btn-info  ' if can? :read, order %>
+     <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-small btn-primary  ' if can? :update, order %>
+     <% if current_user %>
+      <% if current_user.is? :admin %>
+       <%= link_to (order.closed ? "Open" : "Close"), close_order_path(order), :class => 'btn btn-small btn-primary  ' if can? :update, order %>
+      <% end %>
+     <% end %>
+     <%= link_to 'Destroy', order_url(order), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger  ' if can? :destroy, order %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New Order', new_order_path, :class => 'btn btn-small btn-primary' if can? :create, Order %>

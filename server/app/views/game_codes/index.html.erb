@@ -1,0 +1,25 @@
+<h1>Listing game_codes</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Code</th>
+    <th>Bonus</th>
+    <th>Days</th>
+    <th width="15%">Actions</th>
+  </tr>
+
+<% @game_codes.each do |game_code| %>
+  <tr>
+    <td><%= game_code.code %></td>
+    <td><%= game_code.bonus %></td>
+    <td><%= game_code.days %></td>
+    <td class="btn-group">
+      <%= link_to 'Show', game_code, :class => 'btn btn-small btn-info  ' if can? :read, game_code  %>
+      <%= link_to 'Edit', edit_game_code_path(game_code), :class => 'btn btn-small btn-primary  ' if can? :update, game_code  %>
+      <%= link_to 'Destroy', game_code, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger  ' if can? :destroy, game_code %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New Game code', new_game_code_path, :class => 'btn btn-small btn-primary' if can? :create, GameCode %>

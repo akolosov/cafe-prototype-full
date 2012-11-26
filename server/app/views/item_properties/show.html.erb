@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item:</b>
+  <%= @item_property.item.name %>
+</p>
+
+<p>
+  <b>Property:</b>
+  <%= @item_property.property.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @item_property.value %>
+</p>
+
+<div class="btn-group">
+ <%= link_to 'Back', item_properties_path, :class => 'btn btn-small ' %>
+ <%= link_to 'Edit', edit_item_property_path(@item_property.item, @item_property), :class => 'btn btn-small btn-primary' if can? :update, @item_property  %>
+</div>

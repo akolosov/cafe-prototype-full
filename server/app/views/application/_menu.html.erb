@@ -1,0 +1,12 @@
+<% if current_user %>
+  <li><%= link_to "Users", users_path if can? :manage, User %></li>
+  <li><%= link_to "Codes", game_codes_path if can? :manage, GameCode %></li>
+  <li><%= link_to "Groups", groups_path if can? :manage, Group %></li>
+  <li><%= link_to "Items", items_path if can? :manage, Item %></li>
+  <li><%= link_to "Properties", properties_path if can? :manage, Property %></li>
+  <li><%= link_to "Menus", menus_path if can? :manage, Menu %></li>
+  <li><%= link_to "Order", orders_path if can? :manage, Order %></li>
+<% else %>
+  <li><%= link_to "Order", orders_path if can? :create, Order  %></li>
+<% end %>
+

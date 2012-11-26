@@ -1,0 +1,6 @@
+[<% @groups.each do |group| %>
+<%= { :id => group.id,
+      :name => group.name(params[:locale]),
+      :description => group.description(params[:locale]),
+      :photo => group.photo }.to_json.html_safe %>,
+<% end %>{}]

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Photo:</b>
+  <%= image_tag @group.photo %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @group.description %>
+</p>
+
+<div class="btn-group">
+ <%= link_to 'Back', groups_path, :class => 'btn btn-small ' %>
+ <%= link_to 'Edit', edit_group_path(@group), :class => 'btn btn-small bnt-primary' if can? :update, @group %>
+</div>

@@ -1,0 +1,26 @@
+<h1>Listing menus</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Startdate</th>
+    <th>Enddate</th>
+    <th width="20%">Actions</th>
+  </tr>
+
+<% @menus.each do |menu| %>
+  <tr>
+    <td><%= menu.name %></td>
+    <td><%= menu.startdate %></td>
+    <td><%= menu.enddate %></td>
+    <td class="btn-group">
+     <%= link_to 'Show', menu, :class => 'btn btn-small btn-info  ' if can? :read, menu %>
+     <%= link_to 'Items', menu_items_path(menu), :class => 'btn btn-small btn-info  ' if can? :read, menu %>
+     <%= link_to 'Edit', edit_menu_path(menu), :class => 'btn btn-small btn-primary  ' if can? :update, menu %>
+     <%= link_to 'Destroy', menu, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger  ' if can? :destroy, menu %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New Menu', new_menu_path, :class => 'btn btn-small btn-primary' if can? :create, Menu %>

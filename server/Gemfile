@@ -1,0 +1,31 @@
+source 'http://rubygems.org'
+
+gem 'rails', '3.2.7'
+
+gem "bcrypt-ruby", :require => "bcrypt"
+
+gem 'sqlite3-ruby', :require => 'sqlite3'
+
+gem 'sorcery'
+
+gem 'cancan'
+
+gem 'squeel'
+
+gem 'jquery-rails'
+
+gem 'twitter-bootstrap-rails'
+
+gem 'russian'
+
+gem 'unicorn'
+
+group :assets do
+  gem 'therubyracer'
+  gem 'uglifier'
+  gem 'less-rails'
+  gem 'coffee-rails'
+end
+
+group :development, :test do
+end

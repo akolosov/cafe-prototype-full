@@ -1,0 +1,41 @@
+<%= form_for(@item, :class => 'form-inline') do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :group %>
+    <%= f.select :group_id, Group.all.collect {|g| [ "#{g.name} (#{g.description})", g.id ] }, { :include_blank => false }, :class => 'span9' %>
+  </div>
+  <% Cafe::Application.config.locale_names.each do |locale| %>
+    <%= hidden_field_tag "item_locales[#{locale}][id]", @item.locale(locale) %>
+    <%= hidden_field_tag "item_locales[#{locale}][locale]", locale %>
+    <div class="field">
+      <%= f.label "Name (#{locale})" %>
+      <%= text_field_tag "item_locales[#{locale}][name]", @item.name(locale), :class => 'span9' %>
+    </div>
+    <div class="field">
+      <%= f.label "Description (#{locale})" %>
+      <%= text_area_tag "item_locales[#{locale}][description]", @item.description(locale), :class => 'span9' %>
+    </div>
+    <br />
+    <br />
+  <% end %>
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.text_field :photo, :class => 'span9' %>
+  </div>
+  <br />
+  <br />
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-small btn-primary' %>
+  </div>
+<% end %>

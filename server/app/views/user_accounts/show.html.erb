@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_account.user.email %>
+</p>
+
+<p>
+  <b>Bonus:</b>
+  <%= @user_account.bonus %>
+</p>
+
+<p>
+  <b>Expired at:</b>
+  <%= @user_account.expired_at %>
+</p>
+
+<div class="btn-group">
+ <%= link_to 'Back', user_accounts_path(@user_account.user), :class => 'btn btn-small ' %>
+ <%= link_to 'Edit', edit_user_account_path(@user_account.user, @user_account), :class => 'btn btn-small btn-primary' %>
+</div>

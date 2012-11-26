@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<b>User:</b>
+<% if @order.user %>
+<p>
+  <%= @order.user.email %>
+</p>
+<% else %>
+  <%= @order.name %>
+<% end %>
+
+<p>
+  <b>Session:</b>
+  <%= @order.session %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @order.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Additions:</b>
+  <%= @order.additions %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @order.status %>
+</p>
+
+<div class="btn-group">
+ <%= link_to 'Back', orders_path, :class => 'btn btn-small ' %>
+ <%= link_to 'Edit', edit_order_path(@order), :class => 'btn btn-small btn-primary' if can? :update, @order %>
+</div>

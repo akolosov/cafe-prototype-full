@@ -1,0 +1,31 @@
+<%= form_for(@user_account, :class => 'form-inline') do |f| %>
+  <% if @user_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_account.errors.count, "error") %> prohibited this user_account from being saved:</h2>
+
+      <ul>
+      <% @user_account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id %>
+
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code, :class => 'span9' %>
+  </div>
+  <div class="field">
+    <%= f.label :bonus %><br />
+    <%= f.text_field :bonus, :class => 'span9' %>
+  </div>
+  <div class="field">
+    <%= f.label :expired_at %><br />
+    <%= f.date_select :expired_at, :class => 'span9' %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-small btn-primary' %>
+  </div>
+<% end %>

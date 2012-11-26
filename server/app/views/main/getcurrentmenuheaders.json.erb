@@ -1,0 +1,6 @@
+[<% @menus.each do |menu| %>
+<%= { :id => menu.id,
+      :name => menu.name(params[:locale]),
+      :startdate => menu.startdate,
+      :enddate => menu.enddate }.to_json.html_safe %>,
+<% end %>{}]

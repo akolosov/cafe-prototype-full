@@ -1,0 +1,27 @@
+<%= form_for(@order_item, :class => 'form-inline') do |f| %>
+  <% if @order_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order_item.errors.count, "error") %> prohibited this order_item from being saved:</h2>
+
+      <ul>
+      <% @order_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :order_id %>
+
+  <div class="field">
+    <%= f.label :menu_item %><br />
+    <%= f.select(:menu_item_id, MenuItem.all.collect {|m| [ "#{m.item.name} (#{m.item.description})", m.id ] }, { :include_blank => false }, :class => 'span9') %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br />
+    <%= f.number_field :count %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-small btn-primary' %>
+  </div>
+<% end %>

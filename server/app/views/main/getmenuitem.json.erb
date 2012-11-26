@@ -1,0 +1,9 @@
+[<%= { :id => @menu_item.id,
+      :menu_id => @menu_item.menu_id,
+      :name => @menu_item.item.name(params[:locale]),
+      :description => @menu_item.item.description(params[:locale]),
+      :photo => @menu_item.item.photo,
+      :groupname => @menu_item.item.group.name(params[:locale]),
+      :groupdescription => @menu_item.item.group.description(params[:locale]),
+      :groupphoto => @menu_item.item.group.photo,
+      :cost => @menu_item.cost }.to_json.html_safe %>]

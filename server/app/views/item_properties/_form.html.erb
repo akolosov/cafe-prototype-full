@@ -1,0 +1,29 @@
+<%= form_for(@item_property, :class => 'form-inline') do |f| %>
+  <% if @item_property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item_property.errors.count, "error") %> prohibited this item_property from being saved:</h2>
+
+      <ul>
+      <% @item_property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :item_id %>
+
+  <div class="field">
+    <%= f.label :property %><br />
+    <%= f.select :property_id, Property.all.collect {|p| [ "#{p.name} (#{p.description})", p.id ] }, { :include_blank => false }, :class => 'span9' %>
+  </div>
+  <br />
+  <div class="field">
+    <%= f.label :value %>
+    <%= f.text_field :value, :class => 'span9' %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-small btn-primary' %>
+  </div>
+<% end %>

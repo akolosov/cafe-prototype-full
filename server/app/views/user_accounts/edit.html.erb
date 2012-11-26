@@ -1,0 +1,8 @@
+<h1>Editing user_account</h1>
+
+<%= render 'form' %>
+
+<div class="btn-group">
+ <%= link_to 'Back', user_accounts_path(@user_account.user), :class => 'btn btn-small ' %>
+ <%= link_to 'Show', user_accounts_path(@user_account.user, @user_account), :class => 'btn btn-small btn-primary' %>
+</div>
